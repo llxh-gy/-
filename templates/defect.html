@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>缺陷分析助手</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        textarea { width: 100%; height: 100px; }
+        .result { background: #f0f0f0; padding: 15px; border-radius: 5px; margin-top: 20px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>缺陷智能分析</h1>
+    <form action="/analyze" method="post">
+        <label for="defect">输入缺陷描述：</label><br>
+        <textarea name="defect" placeholder="例如：在弱网环境下，点击登录按钮，App闪退。">{{ defect or '' }}</textarea><br><br>
+        <input type="submit" value="分析缺陷">
+    </form>
+    {% if result %}
+    <div class="result">
+        <h2>分析结果：</h2>
+        {{ result|replace('\n', '<br>')|safe }}
+    </div>
+    {% endif %}
+</body>
+</html>
